@@ -1,0 +1,172 @@
+# i3 config file (v4)
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+set $alt Mod1
+set $mod Mod4
+set $browser firefox
+set $terminal alacritty
+
+font pango:JetBrainsMono Nerd Font Bold 14
+
+# auto start ---------------------------
+
+exec_always --no-startup-id picom
+exec_always --no-startup-id polybar
+
+# key bindings -------------------------
+
+# applications
+bindsym $mod+Return exec $terminal
+bindsym $alt+space exec --no-startup-id rofi -show drun
+bindsym $mod+e exec --no-startup-id pcmanfm
+
+# window management
+bindsym $mod+q kill
+bindsym $mod+f fullscreen toggle
+bindsym $mod+t layout tabbed
+bindsym $mod+s layout toggle split
+bindsym $mod+$alt+h split v
+bindsym $mod+$alt+v split h
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
+
+# touchpad toggle
+bindsym XF86TouchpadToggle exec --no-startup-id ~/.config/i3/scripts/toggle-touchpad.sh
+
+# volume control
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/scripts/volume.sh 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/scripts/volume.sh 5%-
+bindsym XF86AudioMute        exec --no-startup-id ~/.config/i3/scripts/volume.sh toggleMute
+
+# brightness control
+bindsym XF86MonBrightnessUp         exec --no-startup-id ~/.config/i3/scripts/brightness.sh 2%+
+bindsym XF86MonBrightnessDown       exec --no-startup-id ~/.config/i3/scripts/brightness.sh 2%-
+bindsym Shift+XF86MonBrightnessUp   exec --no-startup-id ~/.config/i3/scripts/brightness.sh 50%
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/scripts/brightness.sh 0%
+
+# screenshots
+bindsym Print       exec flameshot full -c -p ~/Pictures/Screenshots/
+bindsym Shift+Print exec flameshot gui  -c -p ~/Pictures/Screenshots/
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+p exec polybar
+
+bindsym $mod+r mode "resize"
+mode "resize" {
+    bindsym h resize grow width 5 px or 5 ppt
+    bindsym j resize shrink height 5 px or 5 ppt
+    bindsym k resize grow height 5 px or 5 ppt
+    bindsym l resize shrink width 5 px or 5 ppt
+
+    # back to normal
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+# Mouse+$mod to drag floating windows
+floating_modifier $mod
+tiling_drag modifier titlebar
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# window rules ------------------------
+
+for_window [class="pcmanfm"] floating enable
+
+# appearance -----------------------
+
+default_border none
+default_floating_border none
+focus_on_window_activation focus
+hide_edge_borders smart
+title_align center
+workspace_layout default
+
+gaps inner 6
+gaps outer 6
+
+# catpuccin
+set $rosewater #f5e0dc
+set $flamingo  #f2cdcd
+set $pink      #f5c2e7
+set $mauve     #cba6f7
+set $red       #f38ba8
+set $maroon    #eba0ac
+set $peach     #fab387
+set $yellow    #f9e2af
+set $green     #a6e3a1
+set $teal      #94e2d5
+set $sky       #89dceb
+set $sapphire  #74c7ec
+set $blue      #89b4fa
+set $lavender  #b4befe
+set $text      #cdd6f4
+set $subtext1  #bac2de
+set $subtext0  #a6adc8
+set $overlay2  #9399b2
+set $overlay1  #7f849c
+set $overlay0  #6c7086
+set $surface2  #585b70
+set $surface1  #45475a
+set $surface0  #313244
+set $base      #1e1e2e
+set $mantle    #181825
+set $crust     #11111b
+
+# target                 title     bg    text      indicator    border
+client.focused           $mantle   $mauve $mantle  $rosewater $mauve
+client.focused_inactive  $overlay0 $base  $text    $rosewater $overlay0
+client.unfocused         $overlay0 $base  $text    $rosewater $overlay0
+client.urgent            $peach    $base  $peach   $overlay0  $peach
+client.placeholder       $overlay0 $base  $text    $overlay0  $overlay0
+client.background        $base
