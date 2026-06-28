@@ -13,7 +13,7 @@ font pango:JetBrainsMono Nerd Font Bold 14
 
 exec_always --no-startup-id picom
 exec_always --no-startup-id polybar
-exec_always --no-startup-id feh --bg-scale ~/bush-wallpaper.png
+exec_always --no-startup-id feh --bg-scale ~/dotfiles/wallpaper/bush-wallpaper.png
 
 # key bindings -------------------------
 

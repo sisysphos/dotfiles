@@ -1,0 +1,44 @@
+{
+	"logo": {
+		"type": "small",
+		"source": "debian",
+		"padding": {"top": 0, "left": 2, "right": 2}
+	},
+	"display": {
+		"separator": "",
+		"color": {"keys": "yellow", "title": "red"},
+		"key": {"width": 10, "type": "string"}
+	},
+	"modules": [
+		{
+			"type": "os",
+			"format": "| {name} {version}"
+		},
+		{
+			"type": "host",
+			"format": "| {name}"
+		},
+		{
+			"type": "kernel",
+			"format": "| {sysname} {release} ({arch})"
+		},
+		{
+			"type": "cpu",
+			"format": "| {name} ({cores-physical}C/{cores-logical}T) @ {freq-max}"
+		},
+		{
+			"type": "memory",
+			"format": "| {used} / {total} ({percentage})"
+		},
+		{
+			"type": "battery",
+			"key": "Battery",
+			"format": "| {status} ({capacity})"
+		},
+		{
+			"type": "colors",
+			"paddingleft": 11,
+			"symbol": "circle"
+		}
+	]
+}

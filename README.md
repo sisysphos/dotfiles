@@ -12,8 +12,7 @@ Configuration directories for `i3` and `alacritty` have been symlinked to the gi
     - Install Gruvbox
     - Install niceities
 - Configure polybar
-    - Get Gruvbox colours
-    - Arrange modules, hide IP
+    - Arrange modules
 - Get sound working (ASUS skill issue)
 - Configure Alacritty
     - Look into custom bash prompts
