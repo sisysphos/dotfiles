@@ -13,6 +13,7 @@ Configuration directories for `i3` and `alacritty` have been symlinked to the gi
     - Install niceities
 - Configure polybar
     - Arrange modules
+    - Install power menu of some sort
 - Get sound working (ASUS skill issue)
 - Configure Alacritty
     - Look into custom bash prompts
